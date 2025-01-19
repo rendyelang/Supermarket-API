@@ -4,7 +4,6 @@ const db = require("../config/db")
 const getAllProducts = () => {
     const sqlQuery = "SELECT * FROM products"
     const action =  db.promise().query(sqlQuery)
-    console.log(action)
     return action
 }
 

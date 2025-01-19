@@ -7,14 +7,6 @@ const dbConnection = mysql.createConnection({
     database: process.env.DB_NAME
 })
 
-// dbConnection.connect((err) => {
-//     if (err) {
-//         console.log("Error connecting to database")
-//         return
-//     }
-//     console.log("Database connected")
-// })
-
 try {
     dbConnection.connect(()=> {
         console.log("Database connected!")

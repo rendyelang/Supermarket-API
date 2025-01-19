@@ -19,7 +19,7 @@ router.get("/product/search", getProductByCategory)
 router.get("/product/:id", getProductById)
 
 // POST - Create a new product
-router.post("/create-product", createProduct)
+router.post("/add-product", createProduct)
 
 // PUT - Edit a product
 router.put("/product/edit/:id", editProduct)
