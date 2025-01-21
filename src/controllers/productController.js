@@ -50,10 +50,9 @@ const getProductByCategory = async (req, res) => {
     // console.log(category)
 
     if (!category) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Category query cannot be empty"
         })
-        return
     }
 
     try {
@@ -81,10 +80,9 @@ const createProduct = async (req, res) => {
     const { category, name, price, stock_quantity } = req.body
 
     if (!category || !name || !price || !stock_quantity) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "All field must be filled"
         })
-        return
     }
 
     const newProduct = {
@@ -133,8 +131,10 @@ const editProduct = async (req, res) => {
         if (data[0].affectedRows) {
             res.status(200).json({
                 message: "Data edited successfully",
-                newData: {id,
-                ...productEdited}
+                newData: {
+                    id,
+                ...productEdited
+                }
             })
         } else {
             res.status(404).json({
