@@ -15,8 +15,9 @@ const getProductById = (id) => {
 
 //  GET: raad product by category
 const getProductByCategory = (category) => {
-    const sqlQuery = "SELECT * FROM products WHERE category = ?"
-    return db.promise().query(sqlQuery, [category])
+    const sqlQuery = "SELECT * FROM products WHERE category LIKE ?"
+    const keyword = `%${category}%`
+    return db.promise().query(sqlQuery, [keyword])
 }
 
 // POST: create a new product
