@@ -1,12 +1,14 @@
 const router = require("express").Router()
-const {signIn} = require("../controllers/employeeAuth")
+const {employeeSignIn} = require("../controllers/userAuth")
 const {addEmployee, getAllEmployees, getEmployeeByRole, editEmployee, deleteEmployee} = require("../controllers/employeeController")
-const {empSignupValidationMiddleware, empSignInValidationMiddleware} = require("../middleware/employeeAuthAccValidation")
-const {isAuthToken} = require("../middleware/employeeAuthProtect")
+const {empSignupValidationMiddleware, signInValidationMiddleware} = require("../middleware/userAuthAccValidation")
+const {isAuthToken} = require("../middleware/verifyToken")
 const isAdmin = require("../middleware/isAdmin")
+const isEmployeeToken = require("../middleware/isEmployee")
+const {getAllCustomers} = require("../controllers/customerController")
 
 // POST - Sign in employee
-router.post("/employee/sign-in", empSignInValidationMiddleware, signIn)
+router.post("/employee/sign-in", signInValidationMiddleware, employeeSignIn)
 
 // GET - Get all employees
 router.get("/admin/employees", isAuthToken, isAdmin, getAllEmployees)
@@ -22,5 +24,8 @@ router.patch("/admin/edit-employee/:id", isAuthToken, isAdmin, editEmployee)
 
 // DELETE - Delete employee data by ID
 router.delete("/admin/employee/delete/:id", isAuthToken, isAdmin, deleteEmployee)
+
+// GET - Get all customers
+router.get("/employee/customer-data", isAuthToken, isEmployeeToken, getAllCustomers)
 
 module.exports = router

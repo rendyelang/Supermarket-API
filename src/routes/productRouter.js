@@ -8,7 +8,7 @@ const {
     deleteProduct
     } = require("../controllers/productController")
 
-const {isAuthToken} = require("../middleware/employeeAuthProtect")
+const {isAuthToken} = require("../middleware/verifyToken")
 const isAdmin = require("../middleware/isAdmin")
 
 const router = express.Router()

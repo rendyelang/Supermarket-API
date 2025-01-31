@@ -1,4 +1,4 @@
-const {empSignupValidation, empSignInValidation} = require("../config/joiValidation")
+const {empSignupValidation, signInValidation, custSignUpValidation} = require("../config/joiValidation")
 
 const empSignupValidationMiddleware = async (req, res, next) => {
     const {error} = empSignupValidation(req.body)
@@ -14,8 +14,8 @@ const empSignupValidationMiddleware = async (req, res, next) => {
     next()
 }
 
-const empSignInValidationMiddleware = async (req, res, next) => {
-    const {error} = empSignInValidation(req.body)
+const signInValidationMiddleware = async (req, res, next) => {
+    const {error} = signInValidation(req.body)
     const {email, password} = req.body
 
     if (!email || !password) {
@@ -28,4 +28,19 @@ const empSignInValidationMiddleware = async (req, res, next) => {
     next()
 }
 
-module.exports = {empSignupValidationMiddleware, empSignInValidationMiddleware}
+const custSignUpValidationMiddleware = async (req, res, next) => {
+    const {error} = custSignUpValidation(req.body)
+    const {name, email, password, repeat_password} = req.body
+
+    if (!name, !email, !password, !repeat_password) {
+        return res.status(400).json({message: "Required field name, email, password, repeat_password"})
+    }
+
+    if (error) {
+        return res.status(400).json({message: error.details[0].message})
+    }
+
+    next()
+}
+
+module.exports = {empSignupValidationMiddleware, signInValidationMiddleware, custSignUpValidationMiddleware}
