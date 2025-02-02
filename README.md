@@ -17,7 +17,7 @@
 
 ## Introduction
 
-This project is about
+This API is made for the needs of a supermarket starting from product management, employee and customer management, and also handling transactions. Where users can perform several CRUD actions to the available endpoints.
 
 ## Purpose
 
@@ -30,18 +30,21 @@ Lecturer: Shinta Ayuningtias, M.Kom
 
 Informatics Engineering students of Nusa Putra University - TI23I Class
 
-Rendy Elang Lesmana | 20230040044
-
+Rendy Elang Lesmana | 20230040044  
 Siti Nur Aqila L Tokan | 20230040240
 
 # API Documentation
 
 Here is the API documentation on the [following page.]()
 
-# Demo Presentation
+# Demo Presentation Video
 
 Here is our demo presentation video on the [following page.]()
 
 # Report
 
 Here is all of the reports of this REST API Project on the [following page.](./reports/report.md)
+
+## Closing
+
+Praise and gratitude to Allah SWT and the prophet Muhammad SAW. Alhamdulillah, we have completed this project. We would like to thank Mrs. Shinta as the lecturer of the related course who has conveyed knowledge to us, as well as thanks to all the people and aspects involved during the completion of this project 😊.
