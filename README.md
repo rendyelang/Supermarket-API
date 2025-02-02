@@ -31,6 +31,7 @@ Lecturer: Shinta Ayuningtias, M.Kom
 Informatics Engineering students of Nusa Putra University - TI23I Class
 
 Rendy Elang Lesmana | 20230040044
+
 Siti Nur Aqila L Tokan | 20230040240
 
 # API Documentation
@@ -39,8 +40,8 @@ Here is the API documentation on the [following page.]()
 
 # Demo Presentation
 
-Here is our demo presentation video [here.]()
+Here is our demo presentation video on the [following page.]()
 
 # Report
 
-Here is all of the reports of this REST API Project [here.](./reports/report.md)
+Here is all of the reports of this REST API Project on the [following page.](./reports/report.md)
