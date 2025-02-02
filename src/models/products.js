@@ -40,11 +40,18 @@ const deleteProduct = (id) => {
     return db.promise().query(sqlQuery, [id])
 }
 
+// Subtract stock quantity based on order
+const subtractStock = (id, quantity) => {
+    const sqlQuery = "UPDATE products SET stock_quantity = stock_quantity - ? WHERE product_id = ?"
+    return db.promise().query(sqlQuery, [quantity, id])
+}
+
 module.exports = {
     getAllProducts,
     getProductById,
     getProductByCategory,
     createProduct,
     editProduct,
-    deleteProduct
+    deleteProduct,
+    subtractStock
 }

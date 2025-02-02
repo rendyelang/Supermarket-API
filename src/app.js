@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000
 const productsRouter = require("./routes/productRouter")
 const employeeRouter = require("./routes/employeeRouter")
 const customerRouter = require("./routes/customerRouter")
+const transactionOrderRouter = require("./routes/transactionOrderRouter")
 
 app.use(express.json())
 
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 app.use(productsRouter)
 app.use(employeeRouter)
 app.use(customerRouter)
+app.use(transactionOrderRouter)
 
 app.use((req, res) => {
     res.status(404).send({message: "Route not found!"})

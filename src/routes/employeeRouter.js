@@ -6,6 +6,7 @@ const {isAuthToken} = require("../middleware/verifyToken")
 const isAdmin = require("../middleware/isAdmin")
 const isEmployeeToken = require("../middleware/isEmployee")
 const {getAllCustomers} = require("../controllers/customerController")
+const {getAllTransactions} = require("../controllers/transactionController")
 
 // POST - Sign in employee
 router.post("/employee/sign-in", signInValidationMiddleware, employeeSignIn)
@@ -27,5 +28,8 @@ router.delete("/admin/employee/delete/:id", isAuthToken, isAdmin, deleteEmployee
 
 // GET - Get all customers
 router.get("/employee/customer-data", isAuthToken, isEmployeeToken, getAllCustomers)
+
+// GET - Get all transactions
+router.get("/employee/transactions-history", isAuthToken, isEmployeeToken, getAllTransactions)
 
 module.exports = router

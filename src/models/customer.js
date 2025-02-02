@@ -33,4 +33,10 @@ const editCustPassByEmail = (email, newPass) => {
     return db.promise().query(sqlQuery, [newPass, email])
 }
 
-module.exports = {getCustByEmail, addCustomer, getAllCustomer, getCustByName, editCustPassByEmail}
+// Get customer by id
+const getCustById = (id) => {
+    const sqlQuery = "SELECT * FROM customers WHERE customer_id = ?"
+    return db.promise().query(sqlQuery, [id])
+}
+
+module.exports = {getCustByEmail, addCustomer, getAllCustomer, getCustByName, editCustPassByEmail, getCustById}

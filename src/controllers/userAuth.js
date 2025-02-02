@@ -81,7 +81,7 @@ const custSignUp = async (req, res) => {
 
 const custSignIn = async (req, res) => {
     const {email, password} = req.body
-
+    
     try {
         const [customer] = await customerModel.getCustByEmail(email)
 
