@@ -21,7 +21,7 @@ This API is made for the needs of a supermarket starting from product management
 
 ## Purpose
 
-This project was made to fulfill the [Final Exam Project](https://drive.google.com/file/d/1EJCHtf_zDMsSAKApAVzS6uCg-Xq_ObLW/view)
+This project was made to fulfill the <a href="https://drive.google.com/file/d/1EJCHtf_zDMsSAKApAVzS6uCg-Xq_ObLW/view" target="_blank" rel="noopener noreferrer">Final Exam Project</a>
 
 Course: Platform Based Programming  
 Lecturer: Shinta Ayuningtias, M.Kom
