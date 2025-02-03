@@ -2,202 +2,216 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#introduction)
-2. [Database Design](#database-design)
-3. [Packages](#packages)
-4. [API Documentation](#api-documentation)
-5. [Public API Integration](#public-api-integration)
-6. [Authentication & Middleware](#authentication--middleware)
-7. [Testing Results](#testing-results)
-8. [End of Report](#end-of-report)
+1. [Introduction](#-introduction)
+2. [Database Design](#-database-design)
+3. [Endpoint Design](#-endpoint-design)
+4. [API Documentation](#-api-documentation)
+5. [Authentication & Middleware](#authentication--middleware)
+6. [Endpoint Testing](#endpoint-testing)
+7. [End of Report](#end-of-report)
 
-## Introduction
+## 🚩 Introduction
 
-MovieVerse API is a REST API platform that allows users to search for movie information, create personal watchlists, write reviews, and track their search history. This API is built using Node.js, Express, and MySQL, with integration to The Movie Database (TMDB) API.
+Supermarket API is made for the needs of a supermarket starting from product management, employee and customer management, and also handling transactions. Where users can perform several CRUD actions to the available endpoints.
 
-## Database Design
+## 🛢 Database Design
+The database consists of five related tables.
+
+1. **Employees**
+
+   - `employee_id` (Primary Key)
+   - `name`
+   - `role`
+   - `email`
+   - `password`
+
+2. **Customers**
+
+   - `customer_id` (Primary Key)
+   - `name`
+   - `email`
+   - `password`
+
+3. **Products**
+
+   - `product_id` (Primary Key)
+   - `category`
+   - `name`
+   - `price`
+   - `stock_quantity`
+
+4. **Transactions**
+   - `transaction_id` (Primary Key)
+   - `customer_id` (Foreign Key)
+   - `employee_id` (Foreign Key)
+   - `transaction_date`
+   - `grand_total`
+
+4. **Orders**
+   - `order_id` (Primary Key)
+   - `transaction_id` (Foreign Key)
+   - `product_id` (Foreign Key)
+   - `quantity`
+   - `subtotal`
 
 ### ERD (Entity Relationship Diagram)
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/494af145-178a-4892-b85c-0211e610885b">
+</p>
 
-<!-- ERD screenshot -->
 
-## Packages
+### Design
+![Tables-Design](https://github.com/user-attachments/assets/722f5d71-e7b3-4657-8310-179e26a3540e)
 
-Packages that we used on this project.
+## 🔀 Endpoint Design
 
-<a href="https://www.npmjs.com/package/node"><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"></a>
-<a href="https://www.npmjs.com/package/express"><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"></a>
+This API provides a total of 22 endpoints (exceeding the minimum requirement of 20). Below are the details:
 
-<a href="https://www.npmjs.com/package/cors"><img src="https://img.shields.io/github/package-json/dependency-version/m4mayz/MovieVerse/cors?color=blue" alt="Package - cors"></a>
-<a href="https://www.npmjs.com/package/axios"><img src="https://img.shields.io/github/package-json/dependency-version/m4mayz/MovieVerse/axios?color=blue" alt="Package - axios"></a>
-<a href="https://www.npmjs.com/package/bcryptjs"><img src="https://img.shields.io/github/package-json/dependency-version/m4mayz/MovieVerse/bcryptjs?color=blue" alt="Package - bcryptjs"></a>
-<a href="https://www.npmjs.com/package/dotenv"><img src="https://img.shields.io/github/package-json/dependency-version/m4mayz/MovieVerse/dotenv?color=blue" alt="Package - dotenv"></a>
-<a href="https://www.npmjs.com/package/jsonwebtoken"><img src="https://img.shields.io/github/package-json/dependency-version/m4mayz/MovieVerse/jsonwebtoken?color=blue" alt="Package - jsonwebtoken"></a>
-<a href="https://www.npmjs.com/package/mysql2"><img src="https://img.shields.io/github/package-json/dependency-version/m4mayz/MovieVerse/mysql2?color=blue" alt="Package - mysql2"></a>
+## 📜 API Documentation
 
-## API Documentation
+### Endpoint Overview (Total: 22 Endpoints)
 
-### Endpoint Overview (Total: 23 Endpoints)
+#### 🏠 Base URL (1 Endpoint)
 
-#### 👤 User Management (4 Endpoints)
-
-1. **Register User**
+1. **Home URL**
 
     ```http
-    POST /api/users/signup
+    GET /
     ```
 
-2. **Login User**
+#### 👤 User Authentication (3 Endpoints)
+
+1. **Sign-In Employee**
 
     ```http
-    POST /api/users/login
+    POST /emploee/sign-in
     ```
 
-3. **Get User Profile**
+2. **Sign-Up Customer**
 
     ```http
-    GET /api/users/:id/profile
+    POST /customer/sign-up
     ```
 
-4. **Update User Profile**
-    ```http
-    PUT /api/users/:id/profile
-    ```
-
-#### 🎬 Movie Management (6 Endpoints)
-
-1. **Search Movies**
+3. **Sign-In Customer**
 
     ```http
-    GET /api/movies?query=string&page=integer
+    POST /customer/sign-in
     ```
 
-2. **Get Popular Movies**
+#### 📦 Product Management (6 Endpoints)
+
+1. **Get All Products**
 
     ```http
-    GET /api/movies/popular
+    GET /products
     ```
 
-3. **Get Movie Details**
+2. **Get Product by ID**
 
     ```http
-    GET /api/movies/:id
+    GET /product/:id
     ```
 
-4. **Get Movie Cast**
+3. **Search Product by Category**
 
     ```http
-    GET /api/movies/:id/cast
+    GET /product/search?category=?
     ```
 
-5. **Get Movies by Genre**
+4. **Add Product**
+    ```http
+    POST /add-product
+    ```
+
+5. **Update Product by ID**
+    ```http
+    PUT /product/edit/:id
+    ```
+
+6. **Delete Product by ID**
+    ```http
+    DELETE /product/delete/:id
+    ```
+
+#### 👷‍♂️ Employees Management (5 Endpoints)
+
+1. **Get All Employees Data**
 
     ```http
-    GET /api/movies/genre/:genre
+    GET /admin/employees
     ```
 
-6. **Get Movies by Year**
-    ```http
-    GET /api/movies/year/:year
-    ```
-
-#### 📋 Watchlist Management (4 Endpoints)
-
-1. **Add to Watchlist**
+2. **Get Employee Data by Role**
 
     ```http
-    POST /api/watchlist
+    GET /admin/employee/search?role=?
     ```
 
-2. **Get User Watchlist**
+3. **Add Employee**
 
     ```http
-    GET /api/watchlist/:userId
+    POST /admin/add-employee
     ```
 
-3. **Remove from Watchlist**
+4. **Edit Name & Role Employee**
+    ```http
+    PATCH /admin/edit-employee/:id
+    ```
+
+5. **Delete Employee Record by ID**
 
     ```http
-    DELETE /api/watchlist/:userId/:movieId
+    DELETE /admin/employee/delete/:id
     ```
 
-4. **Get Watchlist Count**
-    ```http
-    GET /api/watchlist/:userId/count
-    ```
+#### 👥 Customers Management (3 Endpoints)
 
-#### ⭐ Review Management (5 Endpoints)
-
-1. **Submit Review**
+1. **Get All Customers Data**
 
     ```http
-    POST /api/reviews
+    GET /employee/customer-data
     ```
 
-2. **Get Movie Reviews**
+2. **Get Customer Profile by name query**
 
     ```http
-    GET /api/reviews/movie/:movieId
+    GET /customer/profile?name=?
     ```
 
-3. **Get User Reviews**
+3. **Change Customer Password**
 
     ```http
-    GET /api/reviews/user/:userId
+    PATCH /employee/change-password
     ```
 
-4. **Update Review**
+#### 🛒 Transaction Order Management (4 Endpoints)
+
+1. **Create Transaction**
 
     ```http
-    PUT /api/reviews/:reviewId
+    POST /create-transaction
     ```
 
-5. **Delete Review**
-    ```http
-    DELETE /api/reviews/:reviewId
-    ```
-
-#### 🔍 Search History Management (4 Endpoints)
-
-1. **Record Search**
+2. **Create Order**
 
     ```http
-    POST /api/search-history
+    POST /create-order
     ```
 
-2. **Get User Search History**
+3. **Print Transaction Invoice**
 
     ```http
-    GET /api/search-history/:userId
+    GET /transaction/invoice/:id
     ```
 
-3. **Delete Search History**
+4. **Get All Transactions History**
 
     ```http
-    DELETE /api/search-history/:userId
+    GET /employee/transactions-history
     ```
 
-4. **Get Search Analytics**
-    ```http
-    GET /api/search-history/:userId/analytics
-    ```
-
-#### For more details about API documentation, you can see on the [following page.](https://documenter.getpostman.com/view/40816838/2sAYQUqECL)
-
-## Public API Integration
-
-### TMDB API Integration
-
-```javascript
-const TMDB_BASE_URL = "https://api.themoviedb.org/3";
-const tmdbAxios = axios.create({
-    baseURL: TMDB_BASE_URL,
-    headers: {
-        Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
-        Accept: "application/json",
-    },
-});
-```
+#### For more details about API documentation, please go to the [following page.](https://documenter.getpostman.com/view/29015041/2sAYX3riat)
 
 ## Authentication & Middleware
 
@@ -233,7 +247,7 @@ const verifyToken = (req, res, next) => {
 };
 ```
 
-## Testing Results
+## Endpoint Testing
 
 ### Endpoint Testing Summary
 
