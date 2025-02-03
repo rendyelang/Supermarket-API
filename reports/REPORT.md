@@ -6,9 +6,9 @@
 2. [Database Design](#-database-design)
 3. [Endpoint Design](#-endpoint-design)
 4. [API Documentation](#-api-documentation)
-5. [Authentication & Middleware](#authentication--middleware)
-6. [Endpoint Testing](#endpoint-testing)
-7. [End of Report](#end-of-report)
+5. [Authentication & Middleware](#-authentication--middleware)
+6. [Endpoint Testing](#-endpoint-testing)
+7. [End of Report](#-end-of-report)
 
 ## 🚩 Introduction
 
@@ -213,73 +213,77 @@ This API provides a total of 22 endpoints (exceeding the minimum requirement of 
 
 #### For more details about API documentation, please go to the [following page.](https://documenter.getpostman.com/view/29015041/2sAYX3riat)
 
-## Authentication & Middleware
+## 🔐 Authentication & Middleware
 
 ### JWT Implementation
 
 ```javascript
-const token = jwt.sign(
-    { id: user.id, username: user.username },
-    process.env.JWT_SECRET,
-    { expiresIn: "24h" }
-);
+const token = jwt.sign({
+   customer_id: customer[0].customer_id,
+   name: customer[0].name,
+   email: customer[0].email},
+   process.env.JWT_SECRET_KEY,
+   {expiresIn: "1h"
+})
 ```
 
-### Authentication Middleware
+### Verify Token Middleware
 
 ```javascript
-const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization?.split(" ")[1];
+const isAuthToken = (req, res, next) => {
+    const token = req.header("Authorization")
     if (!token) {
-        return res.status(401).json({
-            message: "Access denied",
-        });
+        return res.status(401).json({message: "Access denied, token is required!"})
     }
     try {
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = verified;
-        next();
+        const verified = jwt.verify(token, process.env.JWT_SECRET_KEY)
+        req.user = verified
+        next()
     } catch (error) {
-        res.status(400).json({
-            message: "Invalid token",
-        });
+        if (error.name === "TokenExpiredError") {
+            return res.status(401).json({ message: "Token expired. Please login again." });
+        }
+        res.status(400).json({message: "Invalid token"})
     }
-};
+}
 ```
 
-## Endpoint Testing
+There are still several other middleware implemented in this project, including:
+- **Pattern Validation**: Validates request body using Joi.
+- **IsAdmin Validation**: Verifies whether the user who sent the request is an admin or not
+- **IsEmployee Validation**: Verifies whether the user who sent the request is an employee or not
 
-### Endpoint Testing Summary
-
-| Category  | Total Endpoints | Success Rate | Avg Response Time |
-| --------- | --------------- | ------------ | ----------------- |
-| Users     | 4               | 100%         | 145ms             |
-| Movies    | 6               | 100%         | 267ms             |
-| Watchlist | 4               | 100%         | 156ms             |
-| Reviews   | 5               | 100%         | 178ms             |
-| Search    | 4               | 100%         | 134ms             |
+## ✅ Endpoint Testing
 
 ### Test Examples using Postman
 
-#### User Registration Test
+#### Sign-Up Customer Test
 
-<!-- ![user signup](./img/signup.png) -->
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/597313a1-ee7e-4c46-b380-503da62d9cb2">
+</p>
 
-#### Login User Test
 
-<!-- ![user signup](./img/login.png) -->
+#### Display Products by Category Test
 
-#### Search Movie Test
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/68965206-9325-418f-a521-e073154f823a">
+</p>
 
-<!-- ![user signup](./img/search.png) -->
 
-## End of Report
+#### Print Transaction Invoice Test
 
-MovieVerse API has been successfully implemented by fulfilling all the required criteria:
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/b65ceccc-baff-4009-98b2-943eba7ac113">
+</p>
 
-1. ✅ Database design with 4 related tables
-2. ✅ 23 endpoint designs (exceeding the minimum of 20)
+
+## ⛔ End of Report
+
+The supermarket API that we developed has met all the criteria for the final project assessment given.
+
+1. ✅ Database design with 5 related tables (exceeding the minimum of 3)
+2. ✅ 22 total endpoint designs (exceeding the minimum of 20)
 3. ✅ Complete documentation for each endpoint
-4. ✅ Integration with TMDB API
-5. ✅ Middleware and JWT Authorization implementation
-6. ✅ Testing for all endpoints
+5. ✅ Middleware and JWT implementation
+6. ✅ Testing passed for all endpoints
