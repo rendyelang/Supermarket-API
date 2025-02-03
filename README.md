@@ -15,36 +15,36 @@
     <a href="https://www.npmjs.com/package/nodemon"><img src="https://img.shields.io/github/package-json/dependency-version/rendyelang/Supermarket-API/nodemon" alt="Package - nodemon"></a>
 </p>
 
-## Introduction
+## 🚩 Introduction
 
 This API is made for the needs of a supermarket starting from product management, employee and customer management, and also handling transactions. Where users can perform several CRUD actions to the available endpoints.
 
-## Purpose
+## 🎯 Purpose
 
 This project was made to fulfill the [Final Exam Project](https://drive.google.com/file/d/1EJCHtf_zDMsSAKApAVzS6uCg-Xq_ObLW/view)
 
 Course: Platform Based Programming  
 Lecturer: Shinta Ayuningtias, M.Kom
 
-## Authors
+## ✍🏻 Authors
 
 Informatics Engineering students of Nusa Putra University - TI23I Class
 
 Rendy Elang Lesmana | 20230040044  
 Siti Nur Aqila L Tokan | 20230040240
 
-# API Documentation
+# 📜 API Documentation
 
 Here is the API documentation on the [following page.](https://documenter.getpostman.com/view/29015041/2sAYX3riat)
 
-# Demo Presentation Video
+# 🎬 Demo Presentation Video
 
 Here is our demo presentation video on the [following page.]()
 
-# Report
+# 📢 Report
 
 Here is all of the reports of this REST API Project on the [following page.](./reports/REPORT.md)
 
-## Closing
+## ⛔ Closing
 
 Praise and gratitude to Allah SWT and the prophet Muhammad SAW. Alhamdulillah, we have completed this project. We would like to thank Mrs. Shinta as the lecturer of the related course who has conveyed knowledge to us, as well as thanks to all the people and aspects involved during the completion of this project 😊.
