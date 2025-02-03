@@ -68,6 +68,7 @@ The database consists of five related tables.
 This API provides a total of 22 endpoints (exceeding the minimum requirement of 20). Below are the details:
 
 ## 📜 API Documentation
+#### The details about API documentation, please go to the [following page.](https://documenter.getpostman.com/view/29015041/2sAYX3riat)
 
 ### Endpoint Overview (Total: 22 Endpoints)
 
