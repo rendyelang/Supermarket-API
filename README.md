@@ -47,4 +47,4 @@ Here is all of the reports of this REST API Project on the [following page.](./r
 
 ## ⛔ Closing
 
-Praise and gratitude to Allah SWT and the prophet Muhammad SAW. Alhamdulillah, we have completed this project. We would like to thank Mrs. Shinta as the lecturer of the related course who has conveyed knowledge to us, as well as thanks to all the people and aspects involved during the completion of this project 😊.
+All praise be to Allah SWT who is the most compassionate and the most merciful. Sholawat and salam we bestow on the prophet Muhammad SAW.. Alhamdulillah, we have completed this project. We would like to thank Mrs. Shinta as the lecturer of the related course who has conveyed knowledge to us, as well as thanks to all the people and aspects involved during the completion of this project 😊.
